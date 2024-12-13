@@ -1,0 +1,20 @@
+# General
+*.log
+*.env
+__pycache__/
+.DS_Store
+
+# Node.js
+frontend/myapp/node_modules/
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+env/
+venv/
+
+# Docker
+**/docker-compose.override.yml
+**/tmp/

@@ -1,0 +1,20 @@
+services:
+  backend:
+    build: 
+      context: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./backend/app:/app"
+    environment:
+      - FLASK_ENV:development
+      - FLASK_APP:app/app.py
+  frontend:
+    build: 
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./frontend/myapp:/usr/src/app"
+      - "/usr/src/myapp/node_modules"
+    
