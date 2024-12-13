@@ -9,6 +9,8 @@ services:
     environment:
       - FLASK_ENV:development
       - FLASK_APP:app/app.py
+      - CHOKIDAR_USEPOLLING=1
+      - FLASK_DEBUG=1
   frontend:
     build: 
       context: ./frontend
