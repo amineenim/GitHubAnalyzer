@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
+CORS(app) # enables CORS for all routes 
 GITHUB_API_URL = "https://api.github.com"
 
 
@@ -24,6 +26,8 @@ def get_github_profile():
     except requests.exceptions.HTTPError as http_err:
         if response.status_code == 404:
             return jsonify({"error" : "user nor found"}),404
+        elif response.status_code == 403:
+            return jsonify({"error" : "Rate limit excedeed, please try again later"}), 403
         return jsonify({"error" : f"HTTP error occured {http_err}"}), response.status_code
     except requests.exceptions.RequestException as req_err:
         return jsonify({"error" : f"Request error occured {req_err}"}), 500 
