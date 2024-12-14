@@ -7,33 +7,36 @@ const Input = () => {
     const [username, setUsername] = useState('');
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleInputChange = (e) => {
         setUsername(e.target.value);
     };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     const handleSearch = async () => {
-        if (!username) {
-            setError('Please enter a username.');
+        if(!username){
+            setError('Please enter a username');
             setProfile(null);
             return;
         }
-
         try {
-            // Make a request to the backend API
             const response = await axios.get(`${config.backendUrl}/api/profile?username=${username}`);
-            setProfile(response.data);
-            setError(''); // Clear any previous errors
-        } catch (err) {
-            // Handle errors from the backend
-            if (err.response && err.response.status === 404) {
-                setError('User not found.');
-            } else if (err.response && err.response.status === 403) {
-                setError('Rate limit exceeded. Please try again later.');
-            } else {
-                setError('An unexpected error occurred.');
+            if(response.data.status === "success"){
+                setProfile(response.data.data);
+                setError('');
+                setUsername('');
+                setIsModalOpen(true);
+            } else if (response.data.status === "error"){
+                setProfile(null);
+                setError(response.data.message);
             }
-            setProfile(null); // Clear the profile data on error
+        } catch (err) {
+            setError(err.response.data.message);
+            setProfile(null);
         }
     };
 
@@ -47,16 +50,21 @@ const Input = () => {
             />
             <button onClick={handleSearch}>Analyze</button>
             {error && <p className="error">{error}</p>}
-            {profile && (
-                <div className="profile">
-                    <img src={profile.avatar_url} alt="User Avatar" />
-                    <h3>{profile.name || 'No Name Provided'}</h3>
-                    <p>{profile.bio || 'No Bio Available'}</p>
-                    <p>Followers: {profile.followers}</p>
-                    <p>Following: {profile.following}</p>
-                    <a href={profile.html_url} target="_blank" rel="noopener noreferrer">
-                        View GitHub Profile
-                    </a>
+            {isModalOpen && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <button className="close-modal" onClick={closeModal}>
+                            &times;
+                        </button>
+                        <img src={profile.avatar_url} alt="User Avatar" />
+                        <h3>{profile.name || 'No Name Provided'}</h3>
+                        <p>{profile.bio || 'No Bio Available'}</p>
+                        <p>Followers: {profile.followers}</p>
+                        <p>Following: {profile.following}</p>
+                        <a href={profile.html_url} target="_blank" rel="noopener noreferrer">
+                            View GitHub Profile
+                        </a>
+                    </div>
                 </div>
             )}
         </div>

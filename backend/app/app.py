@@ -16,21 +16,21 @@ def get_github_profile():
     # get the username from query Params
     username = request.args.get('username')
     if not username:
-        return jsonify({"error" : "Username is required"}),400
+        return jsonify({"status":"error", "message":"Username is required"}),400
     try:
         #Fetch user data from Github API
         response = requests.get(f"{GITHUB_API_URL}/users/{username}")
         response.raise_for_status()
         user_data = response.json()
-        return jsonify(user_data),200
+        return jsonify({"status":"success", "data" : user_data}),200
     except requests.exceptions.HTTPError as http_err:
         if response.status_code == 404:
-            return jsonify({"error" : "user nor found"}),404
+            return jsonify({"status":"error", "message" : "User not found"}),404
         elif response.status_code == 403:
-            return jsonify({"error" : "Rate limit excedeed, please try again later"}), 403
-        return jsonify({"error" : f"HTTP error occured {http_err}"}), response.status_code
+            return jsonify({"status" : "error", "message" : "Rate limit excedeed, please try again later"}), 403
+        return jsonify({"status" : "error", "message" : f"HTTP error occured {http_err}"}), response.status_code
     except requests.exceptions.RequestException as req_err:
-        return jsonify({"error" : f"Request error occured {req_err}"}), 500 
+        return jsonify({"status" : "error", "message" : f"Request error occured {req_err}"}), 500 
 
 
 
