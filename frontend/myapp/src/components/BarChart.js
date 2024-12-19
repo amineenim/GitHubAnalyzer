@@ -1,20 +1,25 @@
 import React from 'react';
 import {Chart} from 'react-google-charts';
 
-const BarChart = ({languages}) => {
-    if (!languages || Object.keys(languages).length === 0) {
-        // Return nothing or a loading message if languages data is not yet available
-        return <p>Loading language data...</p>;
-    }
-    const chartData = [['Language', 'Count'], ...Object.entries(languages)];
+const BarChart = ({followers, following, publicRepos, publicGists}) => {
+    const chartData = [
+        ['Type', 'Count', {role : 'style'}],
+        ['Followers', followers, '#1f78b4'], // Blue
+        ['Following', following, '#33a02c'], // Green
+        ['Repos', publicRepos, '#e31a1c'], // Red
+        ['Gists', publicGists, '#ff7f00'], // Orange
+    ];
 
     const options = {
-        title : 'Languages Used in Repositories',
-        hAxis : {title : 'Repositories', minValue : 0},
-        vAxis : {title : 'Language'},
-        bars : 'horizontal',
-        colors : ['#1b9e77'],
+        title : 'User activity Breakdown',
+        chartArea: { width : '70%'},
+        hAxis:
+            {
+                title : 'Count', 
+                minValue : 0
+            },
         legend : {position : 'none'},
+        bar: { groupwidth : '75%' },
     }
     return(
             <Chart

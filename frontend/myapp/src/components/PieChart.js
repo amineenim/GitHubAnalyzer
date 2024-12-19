@@ -1,23 +1,12 @@
 import React from 'react';
 import {Chart} from 'react-google-charts';
 
-const PieChart = ({followers, following, publicRepos, publicGists}) =>  {
-    const chartData = [
-        ['Type', 'Count'],
-        ['Followers', followers],
-        ['Following', following],
-        ['Repos', publicRepos],
-        ['Gists', publicGists],
-    ];
+const PieChart = ({title, data, colors}) =>  {
+    const chartData = [['Category', 'Count'],...data];
     const options = {
-        title: 'User Activity Breakdown',
+        title: title || "Piechart",
         pieHole: 0.4,
-        slices: [
-            { color: '#1f78b4' },
-            { color: '#33a02c' },
-            { color: '#e31a1c' },
-            { color: '#ff7f00' },
-        ],
+        slices: colors.map((color) => ({color})),
         legend: { position: 'bottom' },
     };
 

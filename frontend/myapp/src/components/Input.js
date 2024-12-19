@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Input.css';
 import config from '../config';
-import PieChart from './PieChart';
 import BarChart from './BarChart';
+import LanguagesChart from './LanguagesChart';
 
 const Input = () => {
     const [username, setUsername] = useState('');
     const [profile, setProfile] = useState(null);
-    const [repos, setRepos] = useState([]);
-    const [languages, setLanguages] = useState({});
     const [error, setError] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -17,23 +15,6 @@ const Input = () => {
 
     const closeModal = () => setIsModalOpen(false);
 
-    const fetchAdditionalData = async (reposUrl) => {
-        try {
-            const reposResponse = await axios.get(reposUrl);
-            setRepos(reposResponse.data);
-
-            // Fetch languages
-            const languageCounts = {};
-            for (const repo of reposResponse.data) {
-                if (repo.language) {
-                    languageCounts[repo.language] = (languageCounts[repo.language] || 0) + 1;
-                }
-            }
-            setLanguages(languageCounts);
-        } catch (error) {
-            console.error('Error fetching repositories or languages:', error);
-        }
-    };
 
     const handleSearch = async () => {
         if (!username) {
@@ -49,9 +30,6 @@ const Input = () => {
                 setError('');
                 setUsername('');
                 setIsModalOpen(true);
-
-                // Fetch repositories and language data
-                await fetchAdditionalData(userData.repos_url);
             } else {
                 setProfile(null);
                 setError(response.data.message);
@@ -94,16 +72,15 @@ const Input = () => {
                         </div>
                         <p className="bio">{profile.bio || 'No Bio Available'}</p>
                         <div className="chart-container">
-                            <PieChart
+                            <BarChart
                             followers={profile.followers}
                             following={profile.following}
                             publicRepos={profile.public_repos}
-                            publicGists={profile.public_gists} />
-                            {Object.keys(languages).length > 0 && (
-                                <BarChart 
-                                languages={languages}
-                                />
-                            )}
+                            publicGists={profile.public_gists} 
+                            />
+                            <LanguagesChart 
+                            reposUrl={profile.repos_url}
+                            />
                         </div>
                     </div>
                 </div>
