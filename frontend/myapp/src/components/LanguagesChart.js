@@ -39,13 +39,12 @@ const LanguagesChart = ({ reposUrl }) => {
     if (chartData.length === 0) return <p>No language data available.</p>;
 
     return (
-        <div className="chart-container2">
             <PieChart
-                title="Languages Used in Repositories"
+                title="Most Used Languages"
                 data={chartData}
                 colors={colors}
             />
-        </div>
+       
     );
 };
 

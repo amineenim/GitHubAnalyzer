@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Input.css';
 import config from '../config';
-import BarChart from './BarChart';
+import ProfileChart from './ProfileChart';
 import LanguagesChart from './LanguagesChart';
 
 const Input = () => {
@@ -57,26 +57,25 @@ const Input = () => {
                         </button>
                         <div className="profile-header">
                             <img src={profile.avatar_url} alt="User Avatar" className="avatar" />
-                            <h2>{profile.name || 'No Name Provided'}</h2>
-                            <p className="username">@{profile.login}</p>
-                            <div className="profile-links">
-                                {profile.blog && (
-                                    <a href={profile.blog} target="_blank" rel="noopener noreferrer" className="link">
-                                        Blog
+                            <div className="profile-header-content">
+                                {profile.name && <h2>{profile.name}</h2>}
+                                <p className="username">@{profile.login}</p>
+                                <div className="profile-links">
+                                    {profile.blog && (
+                                        <a href={profile.blog} target="_blank" rel="noopener noreferrer" className="link">
+                                            Blog
+                                        </a>
+                                    )}
+                                    <a href={profile.html_url} target="_blank" rel="noopener noreferrer" className="link">
+                                        GitHub Profile
                                     </a>
-                                )}
-                                <a href={profile.html_url} target="_blank" rel="noopener noreferrer" className="link">
-                                    GitHub Profile
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <p className="bio">{profile.bio || 'No Bio Available'}</p>
                         <div className="chart-container">
-                            <BarChart
-                            followers={profile.followers}
-                            following={profile.following}
-                            publicRepos={profile.public_repos}
-                            publicGists={profile.public_gists} 
+                            <ProfileChart 
+                            profile={profile}
                             />
                             <LanguagesChart 
                             reposUrl={profile.repos_url}

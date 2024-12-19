@@ -5,9 +5,26 @@ const PieChart = ({title, data, colors}) =>  {
     const chartData = [['Category', 'Count'],...data];
     const options = {
         title: title || "Piechart",
+        titleTextStyle: {
+            fontSize: 18,
+            bold: true,
+            color: '#333',
+        },
+        legend: {
+            position: 'bottom',
+            alignment: 'center', // Align legend at the center
+            maxLines: 3, // Limit to 3 rows in the legend
+            textStyle: {
+                fontSize: 12,
+                color: '#333',
+            },
+        },
         pieHole: 0.4,
         slices: colors.map((color) => ({color})),
-        legend: { position: 'bottom' },
+        chartArea: {
+            width: '85%', // Expand chart width
+            height: '70%', // Adjust chart height
+        },
     };
 
     return(

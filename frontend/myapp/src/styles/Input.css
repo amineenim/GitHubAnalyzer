@@ -122,6 +122,7 @@ button:active {
     .avatar {
         width: calc(80px + 4vw); /* Adjust dynamically */
         max-width: 120px;
+        margin-bottom: 15px
     }
 
     input {
@@ -134,6 +135,20 @@ button:active {
         font-size: 0.9rem;
         padding: 8px;
         width: 95%;
+    }
+    .profile-header {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+        text-align: center;
+    }
+
+
+    .profile-header-content {
+        align-items: center; /* Center align text */
+    }
+
+    .profile-links {
+        justify-content: center;
     }
 }
 
@@ -151,6 +166,13 @@ button:active {
     .avatar {
         width: 80px;
     }
+    .profile-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .username {
+        font-size: 1rem;
+    }
 
     input {
         font-size: 0.8rem;
@@ -162,6 +184,10 @@ button:active {
         font-size: 0.8rem;
         padding: 6px;
         width: 100%;
+    }
+    .link {
+        font-size: 0.8rem; /* Smaller font for compact design */
+        padding: 6px 12px;
     }
 }
 
@@ -187,24 +213,46 @@ button:active {
 .profile-header {
     display: flex;
     align-items: center;
+    justify-content:flex-start;
     gap: 20px;
     flex-wrap: wrap; /* Ensure wrapping on smaller screens */
-    text-align: center;
+    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .avatar {
-    width: calc(100px + 5vw);
-    max-width: 150px;
-    border-radius: 50%;
-    border: 3px solid #fff;
+    width: calc(100px + 5vw); /* Dynamically adjust width */
+    max-width: 150px; /* Maximum size */
+    border-radius: 50%; /* Circular avatar */
+    border: 3px solid #ffffff; /* White border for contrast */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Soft shadow */
+}
+.profile-header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+.profile-header h2 {
+    font-size: calc(1.2rem + 0.5vw); /* Responsive font size */
+    color: #ffffff;
+    margin: 0;
+}
+.username {
+    font-size: calc(1rem + 0.3vw); /* Responsive font size */
+    color: #9ca3af;
+    margin: 0;
 }
 
-.username {
-    font-size: calc(1rem + 0.5vw);
-    font-weight: bold;
-    color: #d1d5da;
-    margin: 5px 0;
+.profile-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Ensure links wrap on smaller screens */
+    justify-content: center;
 }
+
 
 .link {
     color: #58a6ff;
