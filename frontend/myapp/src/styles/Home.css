@@ -12,7 +12,7 @@ body {
 .home {
     text-align: center;
     width: 100%;
-    max-width: 600px; /* Restrict width on larger screens */
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -22,7 +22,7 @@ body {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px; /* Padding for spacing */
+    padding: 20px;
     box-sizing: border-box;
 }
 
@@ -48,7 +48,7 @@ main {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     width: 100%;
-    max-width: 500px; /* Restrict width on larger screens */
+    max-width: 500px;
     box-sizing: border-box;
 }
 
@@ -57,20 +57,17 @@ footer {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* Media Query for Smaller Screens */
+/* Responsive Styles */
 @media (max-width: 760px) {
     .home {
-        height: auto; /* Allow height to adjust for smaller screens */
+        height: auto;
         padding: 15px;
-        border-radius: 0; /* Remove border-radius for full-width look */
-        box-shadow: none; /* Remove shadow for simplicity */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        border-radius: 0;
+        box-shadow: none;
     }
 
     main {
-        width: 100%; /* Occupy full width */
+        width: 100%;
         margin: 10px 0;
         padding: 15px;
     }
