@@ -11,8 +11,7 @@ body {
 
 .home {
     text-align: center;
-    width: 100%;
-    max-width: 600px;
+    width: 90%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -48,7 +47,6 @@ main {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     width: 100%;
-    max-width: 500px;
     box-sizing: border-box;
 }
 
@@ -64,6 +62,7 @@ footer {
         padding: 15px;
         border-radius: 0;
         box-shadow: none;
+        max-width: 500px;
     }
 
     main {
@@ -78,5 +77,12 @@ footer {
 
     header p {
         font-size: 1rem;
+    }
+}
+@media (min-width: 768px){
+    .home {
+        width: 80%;
+        height: 95vh;
+        margin: 5%;
     }
 }
