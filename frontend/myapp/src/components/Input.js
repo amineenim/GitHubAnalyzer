@@ -5,7 +5,7 @@ import config from '../config';
 import Modal from './Modal';
 import '../styles/Input.css';
 
-const Input = () => {
+const Input = ({theme}) => {
     const [username, setUsername] = useState('');
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState('');
@@ -46,7 +46,12 @@ const Input = () => {
             />
             <button onClick={handleSearch}>Analyze</button>
             {error && <p className="error">{error}</p>}
-            {isModalOpen && profile && <Modal profile={profile} setIsModalOpen={setIsModalOpen} />}
+            {isModalOpen && profile && 
+            (<Modal 
+            profile={profile} 
+            setIsModalOpen={setIsModalOpen}
+            theme={theme}
+            />)}
         </div>
     );
 };

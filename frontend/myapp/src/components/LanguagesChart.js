@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PieChart from './PieChart';
 
-const LanguagesChart = ({ reposUrl }) => {
+const LanguagesChart = ({ reposUrl, theme }) => {
     const [languages, setLanguages] = useState({});
     const [loading, setLoading] = useState(true);
 
@@ -40,6 +40,7 @@ const LanguagesChart = ({ reposUrl }) => {
 
     return (
             <PieChart
+                theme={theme}
                 title="Most Used Languages"
                 data={chartData}
                 colors={colors}

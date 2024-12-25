@@ -1,7 +1,8 @@
 import React from "react";
 import Chart from "react-google-charts";
 
-const ProfileChart = ({profile}) => {
+const ProfileChart = ({profile, theme}) => {
+    const isDarkMode = theme === 'dark';
 
     const chartData = [
         ['Type', 'Count', { role : 'style'}],
@@ -13,22 +14,26 @@ const ProfileChart = ({profile}) => {
 
     const options = {
         title : 'User Activity Breakdown',
+        backgroundColor : isDarkMode ? '#313234' : 'white',
         titleTextStyle: {
             fontSize: 18, // Customize title font size
             bold: true,
-            color: '#333', // Title color
+            color: isDarkMode ? 'white' : 'black', // Title color
             alignments: 'center', // Center-align title
         },
         chartArea : {
             width : '85%',
             height : '70%',
-            backgroundColor: '#f4f4f4',
+            backgroundColor: isDarkMode ? '#313234':'white',
         },
         vAxis : {
             minValue : 0,
             textStyle : { fontSize:12 },
         },
-        legend : {position : 'none'},
+        textStyle: {
+            fontSize: 12,
+            color: isDarkMode ? 'white' : 'black',
+        },
         bar : { groupwidth : '75%' },
         /*backgroundColor: { fill: '#e9ecef' },*/
     }

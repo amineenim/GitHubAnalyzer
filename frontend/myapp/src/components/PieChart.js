@@ -1,14 +1,16 @@
 import React from 'react';
 import {Chart} from 'react-google-charts';
 
-const PieChart = ({title, data, colors}) =>  {
+const PieChart = ({title, data, colors, theme}) =>  {
+    const isDarkMode = theme === 'dark';
     const chartData = [['Category', 'Count'],...data];
     const options = {
         title: title || "Piechart",
+        backgroundColor : isDarkMode ? '#313234' : 'white',
         titleTextStyle: {
             fontSize: 18,
             bold: true,
-            color: '#333',
+            color: isDarkMode ? 'white' : 'black',
         },
         legend: {
             position: 'bottom',
@@ -16,7 +18,7 @@ const PieChart = ({title, data, colors}) =>  {
             maxLines: 3, // Limit to 3 rows in the legend
             textStyle: {
                 fontSize: 12,
-                color: '#333',
+                color: isDarkMode ? 'white' : 'black',
             },
         },
         pieHole: 0.4,
@@ -24,6 +26,7 @@ const PieChart = ({title, data, colors}) =>  {
         chartArea: {
             width: '85%', // Expand chart width
             height: '70%', // Adjust chart height
+            backgroundColor: isDarkMode ? '#313234':'white',
         },
     };
 

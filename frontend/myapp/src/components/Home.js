@@ -21,7 +21,7 @@ const Home = () => {
                 </div>
             </header>
             <main>
-                <Input />
+                <Input theme={theme} />
             </main>
             <footer>
                 <p>Powered by GitHub API</p>
