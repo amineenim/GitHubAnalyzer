@@ -26,15 +26,23 @@ const ProfileChart = ({profile, theme}) => {
             height : '70%',
             backgroundColor: isDarkMode ? '#313234':'white',
         },
+        hAxis : {
+            textStyle : {
+                fontSize : 12,
+                color : isDarkMode ? 'white' : 'black'
+            },
+        },
         vAxis : {
             minValue : 0,
-            textStyle : { fontSize:12 },
-        },
-        textStyle: {
-            fontSize: 12,
-            color: isDarkMode ? 'white' : 'black',
+            textStyle : { 
+                fontSize:12,
+                color : isDarkMode ? 'white' : 'black'
+            },
         },
         bar : { groupwidth : '75%' },
+        legend : {
+            position : 'none',
+        }
         /*backgroundColor: { fill: '#e9ecef' },*/
     }
 
