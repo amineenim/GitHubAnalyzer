@@ -1,0 +1,116 @@
+.repositories {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px; /* Add padding for spacing */
+}
+
+.repository {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.repository:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.repositories.dark .repository {
+    background-color: #313234;
+    color: white;
+    border: 1px solid #444;
+}
+
+.repository h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+
+.repository a {
+    color: #0366d6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.repository a:hover {
+    text-decoration: underline;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px; /* Add spacing between buttons */
+    flex-wrap: wrap; /* Ensure tabs wrap on smaller screens */
+}
+
+.tab {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    background: #0366d6;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.tab:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+.tab.active {
+    background: #024fb3;
+    font-weight: bold;
+}
+
+.tabs.dark .tab {
+    background: #444;
+    color: white;
+}
+
+.tabs.dark .tab.active {
+    background: #575757;
+}
+
+.tabs.light .tab {
+    background: #f4f4f4;
+    color: #0366d6;
+}
+
+.tabs.light .tab.active {
+    background: #e1e4e8;
+    font-weight: bold;
+}
+
+/* For small screens (less than 768px) */
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column; /* Stack tabs vertically */
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .repository {
+        padding: 10px;
+        font-size: 0.9rem; /* Reduce font size */
+    }
+}
+
+/* For very small screens (less than 480px) */
+@media (max-width: 480px) {
+    .tab {
+        padding: 8px 12px;
+        font-size: 0.85rem; /* Further reduce font size */
+    }
+
+    .repository h3 {
+        font-size: 1rem; /* Adjust heading size */
+    }
+}
