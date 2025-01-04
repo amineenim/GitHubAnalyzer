@@ -20,7 +20,7 @@ const Modal = ({ profile, setIsModalOpen, theme }) => {
                 <p className={`bio ${theme}`}>{profile.bio || 'No Bio Available'}</p>
 
                 {/* Tabs for Chart Container */}
-                <div className="tabs">
+                <div className={`tabs ${theme}`}>
                     <button
                         className={`tab ${activeTab === 'profile' ? 'active' : ''}`}
                         onClick={() => setActiveTab('profile')}

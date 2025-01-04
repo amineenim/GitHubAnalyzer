@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import RepositoryLoaderSkeleton from './RepositoryLoaderSkeleton';
 import '../styles/Repositories.css';
 
 const Repositories = ({ reposUrl, theme }) => {
@@ -9,11 +10,19 @@ const Repositories = ({ reposUrl, theme }) => {
     useEffect(() => {
         const fetchRepositories = async () => {
             try {
-                const response = await axios.get(reposUrl);
+                // Simulate network delay with setTimeout
+                setLoading(true);
+                const response = await new Promise((resolve) => {
+                    setTimeout(async () => {
+                        const res = await axios.get(reposUrl);
+                        resolve(res);
+                    }, 2000); // 2-second delay
+                });
+    
                 setRepositories(response.data);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching repositories:', error);
+            } finally {
                 setLoading(false);
             }
         };
@@ -21,7 +30,15 @@ const Repositories = ({ reposUrl, theme }) => {
         fetchRepositories();
     }, [reposUrl]);
 
-    if (loading) return <p>Loading repositories...</p>;
+    if(loading){
+        return(
+            <div className={`repositories ${theme}`}>
+                {[...Array(5)].map((_, index) => (
+                    <RepositoryLoaderSkeleton key={index} theme={theme} />
+                ))}
+            </div>
+        );
+    }
 
     return (
         <div className={`repositories ${theme}`}>

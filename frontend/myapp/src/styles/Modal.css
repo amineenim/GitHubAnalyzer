@@ -126,3 +126,61 @@
 .bio.light {
     color: #333333;
 }
+/* Tabs Container */
+.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 20px; /* Space between tabs */
+    flex-wrap: wrap;
+}
+
+.tab {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    background: var(--tab-bg, #0366d6);
+    color: var(--tab-color, white);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.tab:hover {
+    background: var(--tab-hover-bg, #0056b3);
+    transform: scale(1.1);
+}
+
+.tab.active {
+    background: var(--tab-active-bg, #024fb3);
+    font-weight: bold;
+    transform: scale(1.1);
+    border: 2px solid #004ba0;
+    box-shadow: 0 6px 20px rgba(21, 101, 192, 0.4);
+}
+
+/* Dark Theme Tabs */
+.tabs.dark .tab {
+    background: #444;
+    color: white;
+}
+
+.tabs.dark .tab.active {
+    background: linear-gradient(135deg, #8e24aa, #6a1b9a);
+    border: 2px solid #4a148c;
+    box-shadow: 0 6px 20px rgba(138, 43, 226, 0.4);
+}
+
+/* Responsive Styles for Tabs */
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .tab {
+        width: 100%;
+    }
+}

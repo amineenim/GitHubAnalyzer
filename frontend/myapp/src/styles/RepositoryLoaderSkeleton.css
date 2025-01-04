@@ -1,0 +1,59 @@
+/* General Skeleton Loader Styles */
+.skeleton {
+    background: linear-gradient(90deg, #e0e0e0 25%, #f4f4f4 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+    border-radius: 5px;
+}
+
+/* Loader Container */
+.repository-loader {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Skeleton Bars for Title, Description, and Button */
+.skeleton-title {
+    height: 20px;
+    width: 70%;
+}
+
+.skeleton-description {
+    height: 15px;
+    width: 90%;
+}
+
+.skeleton-button {
+    height: 30px;
+    width: 50%;
+    border-radius: 25px;
+}
+
+/* Dark Theme */
+.repository-loader.dark .skeleton {
+    background: linear-gradient(90deg, #444 25%, #555 50%, #444 75%);
+}
+
+/* Light Theme */
+.repository-loader.light .skeleton {
+    background: linear-gradient(90deg, #e0e0e0 25%, #f4f4f4 50%, #e0e0e0 75%);
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
