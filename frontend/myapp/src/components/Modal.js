@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import ProfileHeader from './ProfileHeader';
 import ProfileChart from './ProfileChart';
 import LanguagesChart from './LanguagesChart';
+import ProfileLoaderSkeleton from './ProfileLoaderSkeleton';
 import Repositories from './Repositories'; // New component for repositories
 import '../styles/Modal.css';
 
-const Modal = ({ profile, setIsModalOpen, theme }) => {
+const Modal = ({ profile, setIsModalOpen, theme, loading }) => {
     const [activeTab, setActiveTab] = useState('profile'); // State for active tab
 
     const closeModal = () => setIsModalOpen(false);
@@ -43,9 +44,12 @@ const Modal = ({ profile, setIsModalOpen, theme }) => {
 
                 {/* Interactive Chart Container */}
                 <div className={`chart-container ${theme}`}>
-                    {activeTab === 'profile' && (
-                        <ProfileChart profile={profile} theme={theme} />
-                    )}
+                    {activeTab === 'profile' &&
+                        (!loading ? (
+                            <ProfileLoaderSkeleton theme={theme} />
+                        ) : (
+                            <ProfileChart profile={profile} theme={theme} />
+                        ))}
                     {activeTab === 'languages' && (
                         <LanguagesChart reposUrl={profile.repos_url} theme={theme} />
                     )}

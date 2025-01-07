@@ -16,7 +16,7 @@ const Repositories = ({ reposUrl, theme }) => {
                     setTimeout(async () => {
                         const res = await axios.get(reposUrl);
                         resolve(res);
-                    }, 2000); // 2-second delay
+                    }, 5000); // 2-second delay
                 });
     
                 setRepositories(response.data);
